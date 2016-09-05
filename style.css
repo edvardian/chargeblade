@@ -1,0 +1,16 @@
+body {
+	margin: auto;
+	background-color: #FFFFFF;
+	font-family: sans-serif;
+}
+
+p {
+	text-align: center;
+	color: #FF0000;
+}
+
+.center {
+	margin: auto;
+	border: 3px solid green;
+	text-align = center;
+}

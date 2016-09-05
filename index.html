@@ -1,18 +1,23 @@
 <html>
+
     <head>
         <title>Charge Blade Simulator</title>
-        <script type="text/javascript">
-            var testText = "head test";
-        </script>
+        <link rel = "stylesheet" type = "text/css" href = "style.css">
     </head>
     
     <body>
-        <center>
-            TESTING<br>
-            
-            <script type="text/javascript">
-                document.write(testText);
-            </script>
-        </center>
+        <div id = "mainStage" class = "center">
+            <p id = "gameTitle">CHARGEBLADE</p>
+            <br>
+            <p id = "secondTitle">Subtitle this is</p>
+            <br>
+            <canvas id = "mainCanvas" width = "500" height = "300"></canvas>
+            <form>
+                <input type = "text" id = "nameChange" value = "The name is interesting">
+            </form>
+        </div>
+
+        <script type = "text/javascript" src = "game.js"></script>
     </body>
+
 </html>

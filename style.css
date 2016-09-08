@@ -11,6 +11,15 @@ p {
 
 .center {
 	margin: auto;
-	border: 3px solid green;
-	text-align = center;
+	border: 3px solid yellow;
+	text-align: center;
+	
+}
+
+#gameStage{
+	margin: auto;
+	border: 0px;
+	padding: 0px;
+	width: 500px;
+	height: 300px;
 }

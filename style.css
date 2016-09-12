@@ -11,7 +11,7 @@ p {
 
 .center {
 	margin: auto;
-	border: 3px solid yellow;
+	/* border: 3px solid yellow; */
 	text-align: center;
 	
 }

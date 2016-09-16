@@ -1,3 +1,4 @@
+"use strict";
 
 //EVENT HANDLERS
 document.getElementById("gameTitle").addEventListener("mouseover", function(){document.getElementById("gameTitle").innerHTML = document.getElementById("nameChange").value });

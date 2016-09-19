@@ -1,15 +1,10 @@
 "use strict";
 
 class Game extends Phaser.Game{
-	eventHandling(){
-		console.log("Event Handler");
+	constructor(width, height, renderer, parent, state, transparent, antialias, physicsConfig){
+		super(width, height, renderer, parent, state, transparent, antialias, physicsConfig);
 	}
-
 }
-
-
-var game = new Game( 720, 480, Phaser.AUTO, "gameStage" );
-var maxVelocity = 100;
 
 var stateStartScreen = {
 	preload: function(){
@@ -29,51 +24,57 @@ var stateStartScreen = {
 }
 
 var stateMainGame = {
+	init: function(){
+		this.player = null;
+		this.mousePoint = null;
+	},
+
 	preload: function(){
 		game.load.image("player", "assets/images/player.png");
 	},
 
 	create: function(){
-		var player = this.add.sprite(game.world.centerX, game.world.centerY, "player");
-		player.anchor.set(0.5);
+		this.player = this.add.sprite(game.world.centerX, game.world.centerY, "player");
+		this.player.anchor.set(0.5);
 
-		game.physics.arcade.enable(player);
+		game.physics.arcade.enable(this.player);
 
-		player.body.drag.set(1000);
-		player.body.maxVelocity.set(1);
-		var cursors = this.input.keyboard.createCursorKeys();
-		var mousePoint = this.input.mousePointer;
+		this.player.body.drag.set(1000);
+		this.player.body.maxVelocity.set(1);
+		this.mousePoint = this.input.mousePointer;
 
 	},
 
 	update: function(){
 		//New input methods. Has Sprite looking pointing to the mouse, and moves with WASD keys.
-		player.rotation = game.physics.arcade.angleToPointer(player.body, mousePoint);
+		this.player.rotation = game.physics.arcade.angleToPointer(this.player.body, this.mousePoint);
 
 		if (this.input.keyboard.isDown(Phaser.KeyCode.W)){
-			game.physics.arcade.accelerateToXY(player, player.x, (player.y - 1), 1000, maxVelocity, maxVelocity );
+			game.physics.arcade.accelerateToXY(this.player, this.player.x, (this.player.y - 1), 1000, maxVelocity, maxVelocity );
 			console.log("W is pressed");
 		}
 		else if (this.input.keyboard.isDown(Phaser.KeyCode.S)){
-			game.physics.arcade.accelerateToXY(player, player.x, (player.y + 1), 1000, maxVelocity, maxVelocity );
+			game.physics.arcade.accelerateToXY(this.player, this.player.x, (this.player.y + 1), 1000, maxVelocity, maxVelocity );
 			console.log("S is pressed");
 		}
 		else if (this.input.keyboard.isDown(Phaser.KeyCode.A)){
-			game.physics.arcade.accelerateToXY(player, (player.x - 1), player.y, 1000, maxVelocity, maxVelocity );
+			game.physics.arcade.accelerateToXY(this.player, (this.player.x - 1), this.player.y, 1000, maxVelocity, maxVelocity );
 			console.log("A is pressed");
 		}
 		else if (this.input.keyboard.isDown(Phaser.KeyCode.D)){
-			game.physics.arcade.accelerateToXY(player, (player.x + 1), player.y, 1000, maxVelocity, maxVelocity );
+			game.physics.arcade.accelerateToXY(this.player, (this.player.x + 1), this.player.y, 1000, maxVelocity, maxVelocity );
 			console.log("D is pressed");
 		}
 		else{
-			player.body.acceleration.set(0);
+			this.player.body.acceleration.set(0);
 		}
 
-		game.world.wrap(player, 16);
-
+		game.world.wrap(this.player, 16);
 	}
 }
+
+var game = new Game( 720, 480, Phaser.AUTO, "gameStage" );
+var maxVelocity = 100;
 
 game.state.add("stateStartScreen", stateStartScreen);
 game.state.add("stateMainGame", stateMainGame);

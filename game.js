@@ -1,3 +1,4 @@
+/*global Phaser*/
 "use strict";
 
 class Game extends Phaser.Game{
@@ -71,7 +72,7 @@ var stateMainGame = {
 
 		game.world.wrap(this.player, 16);
 	}
-}
+};
 
 var game = new Game( 720, 480, Phaser.AUTO, "gameStage" );
 var maxVelocity = 100;

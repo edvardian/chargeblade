@@ -43,7 +43,9 @@ var stateMainGame = {
 		this.player.body.drag.set(1000);
 		this.player.body.maxVelocity.set(1);
 		this.mousePoint = this.input.mousePointer;
-
+		this.input.keyboard.onDownCallback = function(){
+			console.log(this.event);
+		}
 	},
 
 	update: function(){
@@ -52,19 +54,19 @@ var stateMainGame = {
 
 		if (this.input.keyboard.isDown(Phaser.KeyCode.W)){
 			game.physics.arcade.accelerateToXY(this.player, this.player.x, (this.player.y - 1), 1000, maxVelocity, maxVelocity );
-			console.log("W is pressed");
+			//console.log("W is pressed");
 		}
 		else if (this.input.keyboard.isDown(Phaser.KeyCode.S)){
 			game.physics.arcade.accelerateToXY(this.player, this.player.x, (this.player.y + 1), 1000, maxVelocity, maxVelocity );
-			console.log("S is pressed");
+			//console.log("S is pressed");
 		}
 		else if (this.input.keyboard.isDown(Phaser.KeyCode.A)){
 			game.physics.arcade.accelerateToXY(this.player, (this.player.x - 1), this.player.y, 1000, maxVelocity, maxVelocity );
-			console.log("A is pressed");
+			//console.log("A is pressed");
 		}
 		else if (this.input.keyboard.isDown(Phaser.KeyCode.D)){
 			game.physics.arcade.accelerateToXY(this.player, (this.player.x + 1), this.player.y, 1000, maxVelocity, maxVelocity );
-			console.log("D is pressed");
+			//console.log("D is pressed");
 		}
 		else{
 			this.player.body.acceleration.set(0);
